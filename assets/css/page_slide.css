@@ -4,27 +4,27 @@ body {
 	padding: 0;
 }
 
-div.container {
+#page-slide-container {
 	position: fixed;
 	display: block;
 	width: 100%;
 }
 
-div.section {
+#page-slide-container div.section {
 	display:flex;
 }
 
 
 /* Colour the sections to ensure they are shown in the correct positions. */
 
-.section-0 {
+#section-0 {
 	background-color:green;
 }
 
-.section-1 {
+#section-1 {
 	background-color: red;
 }
 
-.section-2 {
+#section-2 {
 	background-color: blue;
 }
