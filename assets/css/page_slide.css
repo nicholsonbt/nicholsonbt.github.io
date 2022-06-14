@@ -1,0 +1,30 @@
+/* The container should fill the entire window. */
+body {
+	margin: 0;
+	padding: 0;
+}
+
+div.container {
+	position: fixed;
+	display: block;
+	width: 100%;
+}
+
+div.section {
+	display:flex;
+}
+
+
+/* Colour the sections to ensure they are shown in the correct positions. */
+
+.section-0 {
+	background-color:green;
+}
+
+.section-1 {
+	background-color: red;
+}
+
+.section-2 {
+	background-color: blue;
+}
