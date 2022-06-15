@@ -68,3 +68,12 @@ document.addEventListener('wheel', function(e) {
 	if (canScroll)
 		goToPage(currentPage + (e.deltaY > 0 ? 1 : -1), 1000);
 });
+
+document.addEventListener('keydown', function(e) {
+	console.log(e.keyCode);
+	
+	if (canScroll && e.keyCode == '38')
+		goToPage(currentPage - 1, 1000);
+	else if (canScroll && e.keyCode == '40')
+		goToPage(currentPage + 1, 1000);
+});

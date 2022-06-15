@@ -191,6 +191,10 @@ function updateFadeOutEdges() {
 
 function animate() {
 	requestAnimationFrame(animate);
+	
+	// Slightly rotate the camera as the mouse moves.
+	camera.rotation.x = THREE.MathUtils.lerp(camera.rotation.x, (mouse.y * Math.PI) / 100000, 0.1);
+	camera.rotation.y = THREE.MathUtils.lerp(camera.rotation.y, (mouse.x * Math.PI) / 100000, 0.1);
 
 	// Update and draw all nodes and edges.
 	removeEdges(0.001); // On average, k * 0.001 edges (where k = maxEdges) will be removed (0.2) per frame.
@@ -206,4 +210,9 @@ function animate() {
 
 window.addEventListener('load', function(e) {
 	innitThree();
+});
+
+window.addEventListener('mousemove', function(e) {
+	mouse.x = e.clientX;
+	mouse.y = e.clientY;
 });

@@ -24,6 +24,7 @@ var maxWeight = 0.5;			// The maximum weight of nodes and edges (used for opacit
 var minSpeed = 0.5;				// The minimum speed of a node.
 var maxSpeed = 1;				// The maximum speed of a node.
 var menuOpen = false;			// Whether the menu is open or not.
+var mouse = {x: 0, y: 0}		// Holds the mouse coordinates.
 
 // Class Names:
 
