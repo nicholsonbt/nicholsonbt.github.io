@@ -2,6 +2,7 @@
 body {
 	margin: 0;
 	padding: 0;
+	background-color: black;
 }
 
 #page-slide-container {
@@ -12,19 +13,9 @@ body {
 
 #page-slide-container div.section {
 	display:flex;
+	background-color: transparent
 }
 
-
-/* Colour the sections to ensure they are shown in the correct positions. */
-
-#section-0 {
-	background-color:green;
-}
-
-#section-1 {
-	background-color: red;
-}
-
-#section-2 {
-	background-color: blue;
+div.section h1 {
+	color: white;
 }
