@@ -192,13 +192,20 @@ function updateFadeOutEdges() {
 function animate() {
 	requestAnimationFrame(animate);
 	
+	let perFrameRem = 0.2;
+	let perFrameAdd = 0.3;
+	
+	
 	// Slightly rotate the camera as the mouse moves.
-	camera.rotation.x = THREE.MathUtils.lerp(camera.rotation.x, (mouse.y * Math.PI) / 100000, 0.1);
-	camera.rotation.y = THREE.MathUtils.lerp(camera.rotation.y, (mouse.x * Math.PI) / 100000, 0.1);
+	camera.rotation.x = THREE.MathUtils.lerp(camera.rotation.x, ((mouse.y - window.innerHeight / 2) * Math.PI) / 100000, 0.1);
+	camera.rotation.y = THREE.MathUtils.lerp(camera.rotation.y, ((mouse.x - window.innerWidth / 2) * Math.PI) / 100000, 0.1);
 
 	// Update and draw all nodes and edges.
-	removeEdges(0.001); // On average, k * 0.001 edges (where k = maxEdges) will be removed (0.2) per frame.
-	addEdges(0.00005); // On average, (n-1) * (n-1) * 0.00005 edges will be added (where n = nodeCount) will be added (0.31) per frame - assuming not already at maximum edges.
+	let chanceRem = perFrameRem / maxEdges;
+	let chanceAdd = perFrameAdd / ((nodeCount - 1) * (nodeCount - 1));
+	
+	removeEdges(chanceRem); // On average, k * 0.001 edges (where k = maxEdges) will be removed (0.2) per frame.
+	addEdges(chanceAdd); // On average, (n-1) * (n-1) * 0.00005 edges will be added (where n = nodeCount) will be added (0.31) per frame - assuming not already at maximum edges.
 	
 	updateNodes();
 	updateEdges();
