@@ -35,7 +35,7 @@ function setSize() {
 	// Resize all pages to the inner height.
 	const elements = document.getElementsByClassName("section");
 	for (let i = 0; i < elements.length; i++) {
-		elements[i].setAttribute("style", "height:" + pageHeight + "px");
+		elements[i].setAttribute("style", "height:" + pageHeight + "px; visibility: visible;");
 	}
 	
 	// Calls goToPage for the current page because a resize in height will have changed what the required transformation is.

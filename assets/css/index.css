@@ -3,3 +3,10 @@ body {
 	padding: 0;
 	background-color: #080823;
 }
+
+
+#title-image {
+	position: absolute;
+	top: 250px;
+	left: 350px;
+}
