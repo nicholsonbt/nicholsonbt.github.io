@@ -49,6 +49,47 @@ function innitThree() {
 	animate();
 }
 
+function getBoundaryForces(x, y, z) {
+	// Calculate the forces to be exerted on nodes, in order to keep them mostly in frame.
+	// Since the nodes all have the same weight, some constant k, we can use force and acceleration synonymously.
+	let xAccel = 0;
+	let yAccel = 0;
+	let zAccel = 0;
+	
+	let xMax = (canvasWidth / 2) * 1.2;
+	let yMax = (canvasHeight / 2) * 1.2;
+	let zMax = 5;
+	
+	if (x > xMax)
+		xAccel = -0.5;
+	else if (x > xMax * 0.8)
+		xAccel = -0.1;
+	else if (x < -xMax)
+		xAccel = 0.5;
+	else if (x < -xMax * 0.8)
+		xAccel = 0.1;
+	
+	if (y > yMax)
+		yAccel = -0.5;
+	else if (y > yMax * 0.8)
+		yAccel = -0.1;
+	else if (y < -yMax)
+		yAccel = 0.5;
+	else if (y < -yMax * 0.8)
+		yAccel = 0.1;
+	
+	if (z > zMax)
+		zAccel = -0.5;
+	else if (z > zMax * 0.8)
+		zAccel = -0.1;
+	else if (z < -zMax)
+		zAccel = 0.5;
+	else if (z < -zMax * 0.8)
+		zAccel = 0.1;
+	
+	return {x: xAccel, y: yAccel, z: zAccel};
+}
+
 
 function removeEdges(chance) {
 	// Iterate through all edges and remove some of them.

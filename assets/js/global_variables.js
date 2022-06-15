@@ -32,6 +32,7 @@ var maxWeight = 0.5;			// The maximum weight of nodes and edges (used for opacit
 // addEdges				background.js
 // animate				background.js
 // degreesToRadians		background.js
+// getBoundaryForces	background.js
 // goToPage				page_slide.js
 // innit				page_slide.js
 // innitThree			background.js

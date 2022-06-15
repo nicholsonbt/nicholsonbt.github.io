@@ -25,9 +25,21 @@ class BackgroundNode {
 	
 	update() {
 		// Calculate the new velocities and positions.
-		this.x += this.xVel * deltaT;
-		this.y += this.yVel * deltaT;
-		this.z += this.zVel * deltaT;
+		let forces = getBoundaryForces(this.x, this.y, this.z);
+		
+		// v = u + at.
+		let xVelNew = this.xVel + forces.x * deltaT;
+		let yVelNew = this.yVel + forces.y * deltaT;
+		let zVelNew = this.zVel + forces.z * deltaT;
+		
+		// s = (u + v)t / 2.
+		let newX = this.x + (this.xVel + xVelNew) * deltaT / 2;
+		let newY = this.y + (this.yVel + yVelNew) * deltaT / 2;
+		let newZ = this.z + (this.zVel + zVelNew) * deltaT / 2;
+
+		this.x = newX;
+		this.y = newY;
+		this.z = newZ;
 	}
 	
 	draw() {
