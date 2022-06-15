@@ -1,0 +1,3 @@
+[submodule "attractors"]
+	path = attractors
+	url = https://github.com/nicholsonbt/attractors.git

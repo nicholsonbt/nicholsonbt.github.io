@@ -46,3 +46,7 @@ div.section h1 {
 .section__content ul li {
 	font-size: 24px;
 }
+
+.section__content ul li a {
+	color: silver;
+}
