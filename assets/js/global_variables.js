@@ -18,11 +18,12 @@ var fadeOutEdges;				// An array of BackgroundEdges that are being faded out.
 var fadeLength = 500;			// The number of frames that instances of BackgroundEdge should fade in/out.
 var canvasWidth;				// The width of the canvas at z = 0.
 var canvasHeight;				// The height of the canvas at z = 0.
-var nodeCount = 80;			// The number of nodes.
+var nodeCount = 80;				// The number of nodes.
 var maxEdges = 200;				// The maximum number of edges.
 var maxWeight = 0.5;			// The maximum weight of nodes and edges (used for opacity).
 var minSpeed = 0.5;				// The minimum speed of a node.
 var maxSpeed = 1;				// The maximum speed of a node.
+var menuOpen = false;			// Whether the menu is open or not.
 
 // Class Names:
 
@@ -40,7 +41,9 @@ var maxSpeed = 1;				// The maximum speed of a node.
 // innitThree			background.js
 // lineInEdges			background.js
 // removeEdges			background.js
+// setNameSize			index.js
 // setSize				page_slide.js
+// toggleMenu			index.js
 // updateEdges			background.js
 // updateFadeInEdges	background.js
 // updateFadeOutEdges	background.js

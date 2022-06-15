@@ -8,8 +8,11 @@
 		<meta name="author" content="Ben Nicholson">
 		<title>Ben Nicholson Portfolio</title>
 		
+		<link rel="stylesheet" href="./assets/css/index.css">
 		<link rel="stylesheet" href="./assets/css/page_slide.css">
+		<link rel="stylesheet" href="./assets/css/top_bar.css">
 		
+		<script src="./assets/js/index.js"></script>
 		<script src="./assets/js/global_variables.js"></script>
 		<script src="./assets/js/page_slide.js"></script>
 		<script src="./assets/js/three.min.js"></script> <!-- mrdoob https://github.com/mrdoob/three.js/ -->
@@ -20,17 +23,37 @@
 		<!-- The container holds all pages that can be scrolled to. -->
 		<div id="page-slide-container">
 			<!-- Each section is a page. Scrolling down will increment the page, whilst scrolling up will decrement it. -->
-			<div id="section-0" class="section">
-				<h1>Page 0</h1>
+			<div id="section--0" class="section">
+				<!-- <h1>Page 0</h1> -->
 			</div>
-			<div id="section-1" class="section">
-				<h1>Page 1</h1>
+			<div id="section--1" class="section">
+				<!-- <h1>Page 1</h1> -->
 			</div>
-			<div id="section-2" class="section">
-				<h1>Page 2</h1>
+			<div id="section--2" class="section">
+				<!-- <h1>Page 2</h1> -->
 			</div>
-			<div id="section-3" class="section">
-				<h1>Page 3</h1>
+			<div id="section--3" class="section">
+				<!-- <h1>Page 3</h1> -->
+			</div>
+		</div>
+		
+		<div id="top-bar">
+			<div id="top-bar__name">
+				<div id="top-bar__name-outer">
+					 <div id="top-bar__name-middle">
+						<div id="top-bar__name-inner">
+							<form id="top-bar__name-form" onclick="window.location.reload();">
+								<input id="top-bar__name-input" type="submit" value="Ben Nicholson"/>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="top-bar__menu-button" class="menu-button" onclick="toggleMenu();" style="cursor: pointer;">
+				<div class="menu-button-piece menu-button-top">
+				</div>
+				<div class="menu-button-piece menu-button-bottom">
+				</div>
 			</div>
 		</div>
 	</body>
