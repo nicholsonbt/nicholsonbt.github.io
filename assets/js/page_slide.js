@@ -1,9 +1,3 @@
-// Global Variables:
-var pageHeight = 0;    // The inner height of the page.
-var canScroll = false; // A flag stating whether or not the user is currently allowed to scroll.
-var currentPage = 0;   // The current page being viewed by the user.
-
-
 // This function will cause a transition to scroll from one page to another.
 function goToPage(newPage, timeToTake) {
 	var container = document.getElementById("page-slide-container");
