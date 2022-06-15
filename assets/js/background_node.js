@@ -16,7 +16,7 @@ class BackgroundNode {
 		
 		// Create a sphere mesh.
 		var nodeGeometry = new THREE.SphereGeometry(nodeRadius, nodeWidthSegments, nodeHeightSegments)
-		var nodeMaterial = new THREE.MeshBasicMaterial( { color: colour, transparent : true, opacity : this.weight } );
+		var nodeMaterial = new THREE.MeshBasicMaterial( { color: colour, transparent : true, opacity : this.weight * maxWeight } );
 		
 		this.node = new THREE.Mesh(nodeGeometry, nodeMaterial);
 		
@@ -50,15 +50,18 @@ class BackgroundEdge {
 		this.nodeA = nodeA;
 		this.nodeB = nodeB;
 		
-		// The colour of the edge is the average colour of both nodes.
-		let colour = (this.nodeA.colour + this.nodeB.colour) / 2;
+		this.fadeValue = fadeLength;
 		
 		// The weight of the edge is the average weight of both nodes, multiplied by the passed weight.
-		weight = weight * (this.nodeA.weight + this.nodeB.weight) / 2;
+		this.maxOpacity = maxWeight * weight * (this.nodeA.weight + this.nodeB.weight) / 2;
+		
+		// The colour of the edge is the average colour of both nodes.
+		let c = ((this.nodeA.colour / 65793) + (this.nodeB.colour / 65793)) / 2;
+		let colour = Math.floor(c) * 65793;
 		
 		// Create the line.
 		this.lineGeometry = new THREE.BufferGeometry();
-		this.lineMaterial = new THREE.LineBasicMaterial( { color : colour, linewidth : 1, transparent : true, opacity : weight } );
+		this.lineMaterial = new THREE.LineBasicMaterial( { color : colour, transparent : true, opacity : 0 } );
 		
 		this.lineData = new Float32Array(6);
 		this.lineGeometry.setAttribute('position', new THREE.BufferAttribute(this.lineData, 3));
@@ -66,6 +69,13 @@ class BackgroundEdge {
 		this.line = new THREE.Line(this.lineGeometry, this.lineMaterial);
 		
 		scene.add(this.line);
+	}
+	
+	hasNode(node) {
+		if (node == this.nodeA || node == this.nodeB)
+			return true;
+		
+		return false;
 	}
 	
 	update() {
@@ -91,9 +101,31 @@ class BackgroundEdge {
 	
 	fadeIn() {
 		// Fade the line in (opacity 0 to maximum).
+		this.lineMaterial.opacity = this.maxOpacity * (fadeLength - this.fadeValue) / fadeLength;
+		
+		this.fadeValue -= 1;
+		
+		if (this.fadeValue <= 0) {
+			this.fadeValue = 0;
+			this.lineMaterial.opacity = this.maxOpacity;
+			return true;
+		}
+		
+		return false;
 	}
 	
 	fadeOut() {
 		// Fade the line out (opacity maximum to 0).
+		this.lineMaterial.opacity = this.maxOpacity * (fadeLength - this.fadeValue) / fadeLength;
+		
+		this.fadeValue += 1;
+		
+		if (this.fadeValue >= fadeLength) {
+			this.count = fadeLength;
+			this.lineMaterial.opacity = 0;
+			return true;
+		}
+		
+		return false;
 	}
 }
