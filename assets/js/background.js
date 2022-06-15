@@ -10,12 +10,15 @@ function innitThree() {
 	fadeInEdges = [];
 	fadeOutEdges = [];
 	
+	let fov = 70;
+	let cameraZ = 50;
+	
 	// Setup camera.
-	camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.01, 1000 );
-	camera.position.z = 50;
+	camera = new THREE.PerspectiveCamera(fov, window.innerWidth / window.innerHeight, 0.01, 1000);
+	camera.position.z = cameraZ;
 	
 	// Setup scene.
-	canvasHeight = 2 * (50 * Math.sin(degreesToRadians(70 / 2)) / Math.sin(degreesToRadians(90 - 70 / 2)));
+	canvasHeight = 2 * (cameraZ * Math.sin(degreesToRadians(fov / 2)) / Math.sin(degreesToRadians(90 - fov / 2)));
 	canvasWidth = (window.innerWidth / window.innerHeight) * canvasHeight;
 	
 	scene = new THREE.Scene();
@@ -41,7 +44,7 @@ function innitThree() {
 	
 	// Setup renderer.
 	renderer = new THREE.WebGLRenderer();
-	renderer.setClearColor(0x000000, 1.0)
+	renderer.setClearColor(0x080823, 1.0)
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	document.body.appendChild(renderer.domElement);
 	
@@ -56,36 +59,27 @@ function getBoundaryForces(x, y, z) {
 	let yAccel = 0;
 	let zAccel = 0;
 	
-	let xMax = (canvasWidth / 2) * 1.2;
-	let yMax = (canvasHeight / 2) * 1.2;
+	let xMax = (canvasWidth / 2) * 0.8;
+	let yMax = (canvasHeight / 2) * 0.8;
 	let zMax = 5;
 	
+	let mult = 0.01;
+
+	
 	if (x > xMax)
-		xAccel = -0.5;
-	else if (x > xMax * 0.8)
-		xAccel = -0.1;
+		xAccel = -Math.pow((xMax - x) * mult, 2);
 	else if (x < -xMax)
-		xAccel = 0.5;
-	else if (x < -xMax * 0.8)
-		xAccel = 0.1;
+		xAccel = Math.pow((xMax - x) * mult, 2);
 	
 	if (y > yMax)
-		yAccel = -0.5;
-	else if (y > yMax * 0.8)
-		yAccel = -0.1;
+		yAccel = -Math.pow((yMax - y) * mult, 2);
 	else if (y < -yMax)
-		yAccel = 0.5;
-	else if (y < -yMax * 0.8)
-		yAccel = 0.1;
+		yAccel = Math.pow((yMax - y) * mult, 2);
 	
 	if (z > zMax)
-		zAccel = -0.5;
-	else if (z > zMax * 0.8)
-		zAccel = -0.1;
+		zAccel = -Math.pow((zMax - z) * mult, 2);
 	else if (z < -zMax)
-		zAccel = 0.5;
-	else if (z < -zMax * 0.8)
-		zAccel = 0.1;
+		zAccel = Math.pow((zMax - z) * mult, 2);
 	
 	return {x: xAccel, y: yAccel, z: zAccel};
 }
@@ -200,7 +194,7 @@ function animate() {
 
 	// Update and draw all nodes and edges.
 	removeEdges(0.001); // On average, k * 0.001 edges (where k = maxEdges) will be removed (0.2) per frame.
-	addEdges(0.00005); // On average, (n-1) * (n-1) * 0.00005 edges will be added (where n = nodeCount) will be added (0.4) per frame - assuming not already at maximum edges.
+	addEdges(0.00005); // On average, (n-1) * (n-1) * 0.00005 edges will be added (where n = nodeCount) will be added (0.31) per frame - assuming not already at maximum edges.
 	
 	updateNodes();
 	updateEdges();

@@ -7,7 +7,7 @@ var currentPage = 0;			// The current page being viewed by the user.
 var nodeRadius = 0.2;			// The radius of the node.
 var nodeWidthSegments = 32;		// The number of horizontal segments per node.
 var nodeHeightSegments = 16;	// The number of vertical segments per node.
-var deltaT = 0.01;				// The amount of time simulated for the background per frame.
+var deltaT = 0.025;				// The amount of time simulated for the background per frame.
 var camera;						// The three.js camera used for the background.
 var scene;						// The three.js scene used for the background.
 var renderer;					// The three.js renderer used for the background.
@@ -18,9 +18,11 @@ var fadeOutEdges;				// An array of BackgroundEdges that are being faded out.
 var fadeLength = 500;			// The number of frames that instances of BackgroundEdge should fade in/out.
 var canvasWidth;				// The width of the canvas at z = 0.
 var canvasHeight;				// The height of the canvas at z = 0.
-var nodeCount = 100;			// The number of nodes.
+var nodeCount = 80;			// The number of nodes.
 var maxEdges = 200;				// The maximum number of edges.
 var maxWeight = 0.5;			// The maximum weight of nodes and edges (used for opacity).
+var minSpeed = 0.5;				// The minimum speed of a node.
+var maxSpeed = 1;				// The maximum speed of a node.
 
 // Class Names:
 

@@ -26,17 +26,44 @@ class BackgroundNode {
 	update() {
 		// Calculate the new velocities and positions.
 		let forces = getBoundaryForces(this.x, this.y, this.z);
+
 		
 		// v = u + at.
 		let xVelNew = this.xVel + forces.x * deltaT;
 		let yVelNew = this.yVel + forces.y * deltaT;
 		let zVelNew = this.zVel + forces.z * deltaT;
 		
+		
+		// Bound the node speed.
+		let k;
+		let speed = Math.sqrt(xVelNew * xVelNew + yVelNew * yVelNew + zVelNew * zVelNew);
+		
+		if (speed > maxSpeed) {
+			k = maxSpeed / speed;
+			
+			xVelNew = xVelNew * k;
+			yVelNew = yVelNew * k;
+			zVelNew = zVelNew * k;
+		} else if (speed < minSpeed) {
+			k = minSpeed / speed;
+			
+			xVelNew = xVelNew * k;
+			yVelNew = yVelNew * k;
+			zVelNew = zVelNew * k;
+		}
+		
 		// s = (u + v)t / 2.
 		let newX = this.x + (this.xVel + xVelNew) * deltaT / 2;
 		let newY = this.y + (this.yVel + yVelNew) * deltaT / 2;
 		let newZ = this.z + (this.zVel + zVelNew) * deltaT / 2;
+		
+		
+		// Set the current velocity as the new velocity.
+		this.xVel = xVelNew;
+		this.yVel = yVelNew;
+		this.zVel = zVelNew;
 
+		// Set the current position as the new position.
 		this.x = newX;
 		this.y = newY;
 		this.z = newZ;
@@ -117,6 +144,7 @@ class BackgroundEdge {
 		
 		this.fadeValue -= 1;
 		
+		// If the node has finished fading in, return true.
 		if (this.fadeValue <= 0) {
 			this.fadeValue = 0;
 			this.lineMaterial.opacity = this.maxOpacity;
@@ -132,6 +160,7 @@ class BackgroundEdge {
 		
 		this.fadeValue += 1;
 		
+		// If the node has finished fading out, return true.
 		if (this.fadeValue >= fadeLength) {
 			this.count = fadeLength;
 			this.lineMaterial.opacity = 0;
