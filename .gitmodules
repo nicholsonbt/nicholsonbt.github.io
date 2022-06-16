@@ -1,3 +1,6 @@
 [submodule "attractors"]
 	path = attractors
 	url = https://github.com/nicholsonbt/attractors.git
+[submodule "node-animation"]
+	path = node-animation
+	url = https://github.com/nicholsonbt/node-animation.git

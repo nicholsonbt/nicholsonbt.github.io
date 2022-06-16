@@ -22,4 +22,10 @@ function toggleMenu() {
 window.addEventListener('load', function(e) {
 	// Initialise global variables and setup dynamically assigned values.
 	setNameSize();
+	NODE_ANIMATION.NodeAnimation(window.innerWidth, window.innerHeight);
+});
+
+
+window.addEventListener('mousemove', function(e) {
+	NODE_ANIMATION.updateMouse(e.clientX, e.clientY);
 });
