@@ -34,7 +34,7 @@ window.addEventListener('load', function(e) {
 
 
 window.addEventListener('mousemove', function(e) {
-	NODE_ANIMATION.updateMouse(e.clientX, e.clientY);
+	NODE_ANIMATION.UpdateMouse(e.clientX, e.clientY);
 });
 
 
