@@ -50,30 +50,3 @@ function innit() {
 	// Setup dynamically assigned values.
 	setSize();
 }
-
-
-// Event Listeners:
-window.addEventListener('load', function(e) {
-	// Initialise global variables and setup dynamically assigned values.
-	innit();
-});
-
-window.addEventListener('resize', function(e) {
-	// Change the size of the viewed page.
-	setSize();
-});
-
-document.addEventListener('wheel', function(e) {
-	// If the user can scroll (and is trying to scroll), call a transition to the next page in the direction of the scroll.
-	if (canScroll)
-		goToPage(currentPage + (e.deltaY > 0 ? 1 : -1), 1000);
-});
-
-document.addEventListener('keydown', function(e) {
-	console.log(e.keyCode);
-	
-	if (canScroll && e.keyCode == '38')
-		goToPage(currentPage - 1, 1000);
-	else if (canScroll && e.keyCode == '40')
-		goToPage(currentPage + 1, 1000);
-});
