@@ -4,6 +4,8 @@ var currentPage = 0;			// The current page being viewed by the user.
 var menuOpen = false;			// Whether the menu is open or not.
 
 
+import * as sorting from "../../javascript-sorting/sorting.js";
+
 function setNameSize() {
 	let element = document.getElementById("top-bar__name-input");
 	document.getElementById("top-bar__name-inner").setAttribute("style", "width: " + element.clientWidth + "px");
@@ -20,6 +22,8 @@ function toggleMenu() {
 	}
 	
 	menuOpen = !menuOpen;
+	
+	console.log(sorting.insertionSort([1,2,4,3,5]));
 }
 
 
