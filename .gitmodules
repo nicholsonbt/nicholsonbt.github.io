@@ -4,6 +4,3 @@
 [submodule "node-animation"]
 	path = node-animation
 	url = https://github.com/nicholsonbt/node-animation.git
-[submodule "javascript-sorting"]
-	path = javascript-sorting
-	url = https://github.com/nicholsonbt/javascript-sorting.git
